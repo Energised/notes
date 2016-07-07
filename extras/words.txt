@@ -1,0 +1,37 @@
+---------------
+WORDS TO LEARN
+---------------
+
+CONCURRENT PROCESSES:
+
+    race condition   -> the behavior of a system where the output is dependent on the sequence/timing of uncontrolled events
+                     -> seen as a bug when it causes events to happen in the wrong order
+
+    critical section -> section of a thread that cannot be run on multiple threads concurrently
+                     -> usually due to multiple threads accessing one resource (peripherals, network connection, data)
+
+    mutex            -> program object allowing two threads to access a resource but not simultaneously
+                     -> mutually exclusive - both things cannot be true - two threads can't access a resource simultaneously
+                     -> used in order to prevent the race condition
+                     -> requires that one thread never enters its critical section at the same time as another
+                     (the original idea for this came from Dijkstra in this paper - http://www.di.ens.fr/~pouzet/cours/systeme/bib/dijkstra.pdf)
+
+TABS AND SPACES:
+
+    soft tabs -> space characters are generated when tab is pressed
+
+    hard tabs -> tab characters are generated when tab is pressed
+
+PROGRAMMING LANGUAGE TYPES:
+
+    dynamic programming language -> variable types are checked at runtime
+                                 -> means you don't have to specify a variables type while writing code
+                                 -> e.g. Python, Perl, Ruby
+
+    static programming language  -> variable types are checked at compile time
+                                 -> programmer must specify variable types when declared
+                                 -> e.g. Java, C, C++
+
+DATA TYPES:
+
+    primitive -> data that is not an object and has no methods
