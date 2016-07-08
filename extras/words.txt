@@ -22,7 +22,7 @@ TABS AND SPACES:
 
     hard tabs -> tab characters are generated when tab is pressed
 
-PROGRAMMING LANGUAGE TYPES:
+PROGRAMMING LANGUAGE DISCIPLINES:
 
     dynamic programming language -> variable types are checked at runtime
                                  -> means you don't have to specify a variables type while writing code
@@ -35,3 +35,10 @@ PROGRAMMING LANGUAGE TYPES:
 DATA TYPES:
 
     primitive -> data that is not an object and has no methods
+
+    literal   -> a variable where the value is already defined
+              -> e.g. var a = 3; -> this is a number literal
+
+OTHER:
+
+    wrapper function -> a subroutine whos main purpose is to call a second subroutine with little/no extra computation

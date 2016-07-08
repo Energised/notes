@@ -1,5 +1,6 @@
 // javascript notes
 // dan woolsey
+
 /*
 
 DEFINITIONS:
@@ -19,10 +20,11 @@ CONTEXT:
 
 IMPORTANT FUNCTIONS AND OBJECTS:
   document -> refers to the entire HTML page being dealt with
-  querySelector([selector]) -> refers to a tag in the html document
-  getAttribute([attr_name]) -> given a tag, return the data found in attr_name
+  querySelector([selector])            -> refers to a tag in the html document
+  getAttribute([attr_name])            -> given a tag, return the data found in attr_name
   setAttribute([attr_name],[new_data]) -> given a tag, set 'attr_name' to 'new_data'
-  innerHTML -> the HTML content of the document
+  innerHTML                            -> the HTML content of the document
+  typeof var_name                      -> returns the type of var_name
 
 */
 
@@ -197,9 +199,111 @@ const window.MAX_NUM_OF_USERS = 100;
 
 // PRIMITIVE TYPES:
 
-    Boolean   // true/false
     null      // keyword denotes null value
     undefined // var whos value isn't yet defined
+    Boolean   // true/false
     Number    // any int or float
     String    // any set of characters
-    Symbol    //
+    Symbol    // immutable and may be used as an identifier for object properties
+
+// OBJECT:
+
+    Object()  // structure containing data and operations on said data
+
+// examples
+
+var a = true;
+typeof a       // boolean
+
+typeof b;      // undefined (due to hoisting)
+var b = 6.7;
+
+// 13) type conversion
+
+// returns an integer from a string, even if given a float
+parseInt(string, radix); // radix is just the numerical base
+
+// e.g.
+
+var a = "14";
+typeof a;     // string
+
+var b = parseInt(a, 10);
+b;                       // 14
+typeof b;                // number
+
+// returns a float from a string
+parseFloat(string);
+
+var c = parseFloat("3.532");
+c;                            // 3.532
+
+// 14) literals
+
+// the values inside the data structure are defined upon initalisation
+
+// array literals
+var coffees = ["French Roast", , "Kona"]; // using two commas makes a space in the array known as undefined
+
+coffees[0]; // "French Roast"
+coffees[1]; // undefined
+coffees[2]; // "Kona"
+
+// note: using trailing commas at the start and end of an array can cause errors, avoid where possible
+//       its best to initalise these blank spaces as undefined to avoid any confusion
+
+// object literals
+//    best explained by example
+
+var sales = "Toyota";
+
+function carTypes(name)
+{
+    if(name === "Honda")
+    {
+        return name;
+    }
+    else
+    {
+        return "We don't sell " + name + " cars";
+    }
+}
+
+var car =
+{
+    myCar : "Saturn",
+    getCar : carTypes("Honda"),
+    special : sales,
+    manyCars : {a : "Saab", b : "Jeep"}, // you can nest objects inside of objects
+    "!" : "Please input a valid option", // other data types can also be used as identifiers but are accessed through array notation WITHOUT a dot
+    toString()
+    {
+        return "Car Type: " + this.getCar + "\nCar Model: " + this.getCar + "\nCar Specials: " + this.special;
+    }
+}
+
+car.myCar;      // Saturn
+car.getCar;     // Honda
+car.special;    // Toyota
+car.manyCars.a; // Saab
+car.manyCars.b; // Jeep
+car."";         // SyntaxError: missing name after . operator
+car[""];        // Please input a valid option
+car.toString(); // "Car Type: Honda\nCar Model: Honda\nCar Specials: Toyota"
+
+// 15) regex (regular expressions)
+
+var re = /ab+c/;                    // abc, abbc, abbbc, ... (matches this if found in any expression)
+var result = re.exec("lhsgabcsj");  // searches the given string and returns an array with the found regex pattern(s)
+result;                             // Array["abc"]
+
+// you can also generate a regexp object in the following syntax:
+// RegExp(pattern, [flag]) (flag is optional)
+// note: for pattern, define as a literal (RegExp(/ab+c/)) when the regex is going to remain constant
+//                    define as a constructor (RegExp("ab+c")) when the regex will change
+// (for literal regex, compilation is done at evaluation as opposed to runtime for constructor regex)
+// (literal regex can't accept dynamic input but have better performance over constructor regex)
+
+var re = new RegExp("ab+c");
+var results = re.exec("ftglsabbcacxy");
+results; // Array[abbc]
