@@ -49,6 +49,4 @@ if __name__ == "__main__":
 		total += val
 		print(val)
 	print("Total: " + str(total))
-
-
-
+	

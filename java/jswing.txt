@@ -1,0 +1,8 @@
+JSWING
+
+TERMS:
+
+Component -> An object with a graphical representation
+Container -> A component that can contain other swing components
+JComponent -> Base class for all swing UI components
+

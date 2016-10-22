@@ -122,3 +122,39 @@ print("Generator used once")
 
 for i in g: # this shouldn't print anything to the screen
 	print(i)
+
+# ------------------------
+#
+# GENERATOR EXPRESSIONS
+#
+#	-> Shorthand notation for generator objects
+
+print("\nTEST 3 - GENERATOR EXPRESSIONS")
+
+g = (x*x for x in range(1,10))
+
+print(type(g))
+print(g)
+
+print("\n",sum(g))
+
+# ---------------------
+#
+# CLOSURES
+#
+#	-> A function returned by another function
+#	-> A function inside of a function remembers the scope of the encapsulating function
+#	-> e.g. Even though 'num' is declared in the scope of 'add_number()', it's contained in the scope of 'adder()'
+#
+#	Every function has an __closure__ attribute which holds all variables in the enclosing scope - this allows closures to work
+
+print("\nTEST 4 - CLOSURES")
+
+def add_number(num):
+	def adder(number):
+		return num + number
+	return adder
+
+a = add_number(10)(32)
+print(a)
+

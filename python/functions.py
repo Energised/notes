@@ -1,5 +1,7 @@
 # DEFINING FUNCTIONS
 #
+# functions are objects.
+#
 # EXTRA PYTHON:
 #
 # 	continue - Statement that returns control to the start of the loop and continues on

@@ -1,0 +1,5 @@
+.
+..
+allfiles.txt
+bash_info.sh
+file_permissions.txt

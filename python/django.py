@@ -13,6 +13,8 @@
 # Slug -> Label containing only letters, numbers, underscores and hyphens
 # Relvar -> Shortening for relation variable
 #
+# In the manage.py file the command syncdb has been replaces with migrate since Django 1.7
+#
 # The Design Philosophies of Django:
 # https://docs.djangoproject.com/en/1.9/misc/design-philosophies/
 #

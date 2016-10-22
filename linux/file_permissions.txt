@@ -1,0 +1,82 @@
+file_permissions.txt
+
+Linux File Permissions:
+
+	File Permission Options (10 characters long, broken into 4 sections):
+
+		  (-)		(rwx)		(r-x)		(r--)
+
+		Filetype    Owner       Group       Others
+
+		FILETYPES
+
+			(-) -> Regular file
+			(d) -> Directory file
+			---------------------
+			(b) -> Block file
+			(c) -> Character device file
+			(p) -> Pipe file (named or not)
+			(l) -> Symbolic Link file
+			(s) -> Socket file
+
+
+		3 TYPES OF PERMISSIONS
+
+			(r) -> read
+			(w) -> write
+			(x) -> execute
+
+		3 TYPES OF USERS
+
+			(u) -> User/Owner
+			(g) -> Other users in the files group
+			(o) -> Everyone else
+			--------------------------------
+			(a) -> For all types
+
+		3 OPERATIONS
+
+			(+) -> Add a set of permissions
+			(-) -> Remove a set of permissions
+			(=) -> Set the specified group(s) to have the specified permissions
+
+		EXAMPLES:
+		---------
+
+			chmod u+rx testfile.py -> Gives the files owner read and write permissions
+
+			chmod a+x testfile.py -> Gives all users executable permission
+
+			chmod u+rw,g=r testfile.py -> Gives the owner read and write permission, makes the group users only have
+										  read permission
+
+			chmod a-wx testfile.py -> Remove write and execution permissions from all users on this file
+
+		EXTRA PERMISSIONS
+
+			(X) -> 
+			(s) ->
+			(t) ->
+
+		UMASK
+
+			Command to display the users initial permissions used when they make a file 
+
+			Default = 0022 -> (0)(022) -> (0) represents that it's in octal (base 8), (022) is the numerical permission code
+
+		EXTRA -> NUMERICAL REPRESENTATION OF FILE PERMISSIONS:
+
+			(7) -> rwx
+			(6) -> rw-
+			(5) -> r-x
+			(4) -> r--
+			(3) -> -wx
+			(2) -> -w-
+			(1) -> --x
+			(0) -> ---
+
+			e.g. chmod 764 testfile.py -> Set files permissions to -rwxrw-r--
+
+
+
+
