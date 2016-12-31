@@ -23,6 +23,21 @@
   --
   --    ^^ for list comprehension functions
 
+-- Layout Rule -> In a sequence of definitions, each one must begin in the same column
+
+a = 10
+b = 20
+c = 30
+
+-- avoids the need for explicit syntax to indicate the grouping of definitions
+-- usually an imperative language would use `{}` to indicate a definition group 
+
+a = b + c
+    where
+        b = 1
+        c = 2
+d = a * 2
+
 -- doubles a given number, x
 -- e.g. double 10 -> 20
 
@@ -40,7 +55,7 @@ factorial n = product [1..n]
 
 -- computes an average from a given list of numbers
 -- use of INFIX NOTATION ON FUNCTIONS with div
--- can be written: (div a b) or as (a `div` b)
+-- (a `div` b) is SYNTACTIC SUGAR for (div a b)
 -- e.g. average [4,76,3,45,18,31]
 
 average ns = sum ns `div` length ns
