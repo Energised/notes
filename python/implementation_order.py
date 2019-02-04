@@ -1,3 +1,6 @@
+#!/usr/local/bin/python3
+# implementation_order.py
+
 from abc import ABC, abstractmethod
 from collections import namedtuple
 
@@ -21,7 +24,7 @@ class Order:
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
-        self.cart = cart
+        self.cart = list(cart)
         self.promotion = promotion
 
     def total(self):
@@ -33,11 +36,55 @@ class Order:
         if self.promotion == None:
             discount = 0
         else:
-            discount = self.promotion.discount(self)
+            discount = self.promotion.discount(self, self) # refer to self, then to Order instance
         return self.total() - discount
 
-    def __repr__(self):
+    def info(self):
         fmt = "<Order total: {:.2f} due: {:.2f}>"
         return fmt.format(self.total(), self.due())
 
-class Promotion:
+class Promotion(ABC): # abstract base class
+
+    @abstractmethod
+    def discount(self, order):
+        """ return discount as a positive dollar amount """
+
+class FidelityPromotion(Promotion):
+
+    """ 5% discount for customers w/ >1000 fidelity points """
+
+    def discount(self, order):
+        return order.total() * .05 if order.customer.fidelity >= 1000 else 0
+
+class BulkItemPromotion(Promotion):
+
+    """ 10% discount for each LineItem with >=20 units """
+
+    def discount(self, order):
+        discount = 0
+        for item in order.cart:
+            if item.quantity >= 20:
+                discount += item.total() * .1
+        return discount
+
+class LargeOrderPromotion(Promotion):
+
+    """ 7% discount for orders with >= 10 distinct LineItems """
+
+    def discount(self, order):
+        distinct_items = {item.product for item in order.cart}
+        if len(distinct_items) >= 10:
+            return order.total() * .07
+        return 0
+
+def test():
+    joe = Customer("Joe Doe", 0)
+    ann = Customer("Ann Smith", 1100)
+    cart = [LineItem("Banana",4,.5),
+            LineItem("Apple",10,1.5),
+            LineItem("Pear",5,5.0)]
+    order = Order(ann, cart, promotion=FidelityPromotion)
+    print(order.info())
+
+if __name__ == "__main__":
+    test()
