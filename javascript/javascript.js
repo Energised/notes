@@ -299,7 +299,7 @@ result;                             // Array["abc"]
 
 // you can also generate a regexp object in the following syntax:
 // RegExp(pattern, [flag]) (flag is optional)
-// note: for pattern, define as a literal (RegExp(/ab+c/)) when the regex is going to remain constant
+// note: for pattern, define as a literal (var re = /ab+c/) when the regex is going to remain constant
 //                    define as a constructor (RegExp("ab+c")) when the regex will change
 // (for literal regex, compilation is done at evaluation as opposed to runtime for constructor regex)
 // (literal regex can't accept dynamic input but have better performance over constructor regex)
@@ -307,3 +307,35 @@ result;                             // Array["abc"]
 var re = new RegExp("ab+c");
 var results = re.exec("ftglsabbcacxy");
 results; // Array[abbc]
+
+// 16) loops
+
+// a) while
+
+var x = 0;
+while (x < 10)
+{
+    console.log(x);
+    x++
+}
+
+// 17) switch/case statements
+
+var name = "Dan";
+switch(name)
+{
+    case "Adam":
+        console.log("Welcome back Adam");
+        break;
+    case "Bob":
+        console.log("Welcome back Bob");
+        break;
+    case "Charlie":
+        console.log("Welcome back Charlie");
+        break;
+    case "Dan":
+        console.log("Welcome back Dan");
+        break
+    default:
+        console.log("I don't know you");
+}
