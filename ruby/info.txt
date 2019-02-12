@@ -1,0 +1,305 @@
+puts "ruby"*4
+
+NOTES:
+    
+    -> parentheses are optional on functions
+    -> elsif as 'else if'
+    -> 'duck typing' is common, e.g. with respond_to?() the type
+       of the data isn't the concern, it's if the data responds to
+       a given method
+    -> You can use "if __FILE__ == $0" for a main file being run
+    -> method arguments can be passed without parentheses. e.g.
+        hi(name, surname, age)
+        end
+        hi "name_goes_here", "second_argument", 3
+    -> Can look into Dir and File and IO classes later
+
+irb -> interactive ruby
+
+puts "something" -> prints something
+putc "Hello" -> prints "H"
+print "something" -> prints something without a new line character 
+
+x = gets -> takes input from the user, stores it in x
+
+%w(a bc d efgh) -> whitespace seperated word array
+['a', 'bc', 'd', 'efgh']
+
+a) EXAMPLE FUNCTION:
+
+def hi
+    puts "hello"
+end
+
+b) FUNCTION W/ ARGS:
+
+def hi(name)
+    puts "Hello #{name}" # using #{var} inserts var into the outer string
+end
+
+c) CLASSES
+
+class Greeter
+    attr_accessor :name # allows named attribute to be accessed/changed
+
+    def initialize(name)
+        @name = name     # @name defines instance variable (like 'this')
+    end
+
+    def say_hi
+        puts "Hi #{@name}"
+    end
+
+    def say_bye
+        puts "Bye #{@name}"
+    end
+end
+
+# list all methods of a given class
+Greeter.instance_methods
+
+x = Greeter.new("xyz")
+
+# these two only work if the class has attr_accessor :variable
+x.name
+x.name = "bcdefgh"
+
+d) BIGGER CLASS
+
+class BigGreeter
+    attr_accessor :name
+
+    # constructor
+    def initialize(name)
+        @name = name
+    end
+
+    def say_hi
+        if @name.nil? # bool to check value of name
+            puts "no name given"
+        elsif @name.respond_to?("each") # if the object name is iterable
+            @name.each do |name|
+                puts "Hello #{name}"
+            end
+        else
+            puts "Hello #{@name}"
+        end
+    end    
+
+    def say_bye
+        if @name.nil?
+            puts "no one given"
+        elsif @name.respond_to?("join") # if object is iterable
+            puts "Goodbye #{@name.join(", ")}"
+        else
+            puts "Goodbye #{@name}"
+        end
+    end
+end
+
+e) LOOPS
+
+    i) while
+
+    while conditional [do]
+        code goes here    # only run if condition is true
+    end
+
+    ii) begin/while
+
+    begin
+        code goes here    # runs code once before checking condition
+    end while conditional
+
+    iii) until
+
+    until conditional [do]
+        code goes here
+    end
+
+    iv) for
+
+    for variable in expression [do]
+        code goes here
+    end
+
+    LOOP KEYWORDS:
+
+        break -> exits out of the current loop
+        next  -> skips to the next loop iteration
+        redo  -> restarts the loop, not checking the condition
+        retry -> starts again from beginning of its block/body
+
+f) HASHES
+
+    (pythons dictionaries)
+
+    months = {"1" => "January", "2" => "February", "3" => "March"}
+
+    puts "#{months.keys}"
+    puts "#{months.values}"
+
+g) VARIABLES
+
+    instance variables -> @inst_var
+
+        - available across all methods of the class
+        - specific to each instance of the method
+    
+    class variables -> @@class_var
+    
+        - equivalent of a static variable
+        - holds a constant value over all instances of its class
+
+    global variables -> $glob_var
+
+        - available across all classes
+
+h) ARRAYS
+
+    ways of declaring an array
+
+        Array.new(5)               -> array of size 5
+        Array.new(5,'a')           -> array of 5 lots of 'a'
+        Array.new(5) {|e| e = e*2} -> array containing 0,2,4,6,8
+        Array.[](1,2,3,4,5)        -> array containing 1,2,3,4,5
+        Array[1,2,3,4,5]           -> array containing 1,2,3,4,5
+        Array(1..5)                -> array containing 1,2,3,4,5
+        [1,2,3,4,5]                -> array containing 1,2,3,4,5
+
+    x = [1,2,3,4,5]
+    
+    x.length and x.size -> 5 
+
+i) RANGES
+
+    .. -> inclusive range
+        e.g. (1..5) = 1,2,3,4,5
+    
+    ... -> exclude highest value range
+        e.g. (1...5) = 1,2,3,4
+
+    === -> does a value fall in the given range
+        e.g. if ((1..10) === 7)
+                 puts "7 is in the range
+             end"
+
+j) ITERATORS
+
+    i) each
+
+    collection.each do |variable|
+        code goes here
+    end
+
+    ii) collect
+
+    collection = collection.collect {code goes here}
+    
+e.g x = [1,2,3,4,5]
+    y = x.collect{|z| z*5} # y is an array of multiples of 5
+    puts y # [5,10,15,20.25] 
+
+    NOTE: use collection.clone for copying an array
+          only use collect when you are manipulating the data
+
+k) FILE I/O
+
+    i) oop style
+    
+        doc = File.new("filename","mode")
+        # process file here
+        doc.close
+
+    ii) context manager style
+    
+        File.open("filename","mode") do |doc|
+            # process file here
+        end
+
+    FILE OPENING MODES:
+
+        r  -> read only
+        r+ -> read/write (file pointer at beginning)
+        w  -> write only
+        w+ -> read/write
+        a  -> append (file pointer at end of file)
+        a+ -> read/write (file pointer at end of file)
+    
+
+    iii) reading and writing a file
+
+    doc = File.new("input.txt","r+")
+    if doc
+        content = doc.sysread(20) # reads 20 characters of the file
+        puts content
+        doc.syswrite("abcdef") # writes "abcdef" to the start of the file
+        doc.each_byte {|x| putc x} # prints characters byte by byte
+    else
+        puts "Cannot open file"
+    end
+
+    iv) using IO class
+
+    lines = IO.readlines("input.txt") # array of line elements
+    puts lines.size # number of lines in the file
+    
+    IO.foreach("input.txt"){|x| puts x} # prints each line in file
+
+    v) extra file methods
+
+        File.file?("test.txt") -> true if "test.txt" exists
+        File::directory?("..") -> true if argument is a directory
+        File.readable?("test.txt") -> true if readable file
+        File.writable?("test.txt") -> true if writable file
+        File.executable?("test.txt") -> true if executable file
+        File.zero?("test.txt") -> true if file is of no size
+        File.size?("test.txt") -> returns file size
+
+l) EXCEPTIONS
+
+    begin
+        # some code here
+    rescue Exception => e
+        # do something if exception happens
+        puts e.message
+        puts e.backtrace.inspect # location of exception in file
+        retry # will start again from begin statement
+    end
+
+    raise "Exception Message here"
+    raise ExceptionType, "this is an exception"
+
+m) SYMBOLS
+
+    (http://www.troubleshooters.com/codecorn/ruby/symbols.htm)
+
+    A Symbol is a thing that has an integer and a string representation
+
+    puts :steve       -> steve
+    puts :steve.to_s  -> steve (converts the symbol to a string object)
+    puts :steve.to_i  -> 10257
+    puts :steve.class -> Symbol
+
+    -> Symbols cannot be changed at runtime (it is immutable)
+    -> Every symbol of the same name is the same object:
+
+    :steve.object_id  -> 1144988
+    :steve.object_id  -> 1144988
+    "steve".object_id -> 70320430514680
+    "steve".object_id -> 70320430465420
+
+    -> This isn't true of strings, as such objects save memory
+    -> Since a symbol isn't a string, it can't make use of string methods
+        (although the :symbol.to_s can use string methods)
+    
+    ADVANTAGES OF SYMBOLS
+
+        -> Performance : Program can use it's number representation to find
+                         it, meaning it has a quicker lookup time
+        -> Memory : When using a string multiple times, each instance uses
+                    more memory as a String, but only stores it once as a
+                    symbol
+        -> Constant : Symbols are immutable, unlike strings in Ruby, which 
+                      has its advantages (can look up) 
+    
