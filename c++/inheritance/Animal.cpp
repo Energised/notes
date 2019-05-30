@@ -20,9 +20,13 @@ Animal::~Animal()
     std::cout << "(" << name << ") Destructor - Animal" << std::endl;
 }
 
-int main(int argc, char* argv[])
-{
+// for compiling Animal.cpp; must
+// 1) uncomment main function
+// 2) g++ Animal.cpp -o Animal
+
+//int main(int argc, char* argv[])
+//{
     // Animal a("Bob") // this will not work; Animal is not a complete type
-    Animal *ptr_to_x = nullptr; // this is fine though
-    return 0;
-}
+    //Animal *ptr_to_x = nullptr; // this is fine though
+    //return 0;
+//}

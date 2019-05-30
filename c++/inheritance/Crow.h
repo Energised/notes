@@ -13,5 +13,10 @@
 class Crow : public Animal
 {
 public:
-    Crow(const std::string &_name)
-}
+    Crow(const std::string &_name);
+    virtual ~Crow();
+    // Crow will provide a concrete implementation of Animal::speak();
+    virtual void speak() const;
+};
+
+#endif
