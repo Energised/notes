@@ -32,12 +32,15 @@ void Cat::speak() const
     std::cout << "(" << name << ") Meow! says the Cat" << std::endl;
 }
 
-int main(int argc, char** argv) // for some reason, warning is thrown for char* argv
+int main(int argc, char *argv[])
 {
     //Cat x("Garfield"); // this works
     Animal *x = new Cat("Garfield");
     x->speak();
-    //x->pet();
+    //x->pet(); // wont work; Animal has no knowledge of pet()
+    DomesticatedAnimal *y = new Cat("Socks");
+    y->pet();
     delete x;
+    delete y;
     return 0;
 }
