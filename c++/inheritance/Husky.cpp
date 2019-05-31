@@ -25,12 +25,12 @@ void Husky::speak() const
     std::cout << "(" << name << ") Howl! says the Husky" << std::endl;
 }
 
-int main(int argc, char *argv[])
-{
-    Dog *x = new Husky("Bolt");
-    x->speak();
-    x->pet();
-    delete x;
-    
-    return 0;
-}
+//int main(int argc, char *argv[])
+//{
+//    Dog *x = new Husky("Bolt");
+//    x->speak();
+//    x->pet();
+//    delete x;
+//
+//    return 0;
+//}

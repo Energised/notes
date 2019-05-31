@@ -25,13 +25,13 @@ void StBernard::slobber() const
     std::cout << "(" << name << ") Drools..." << std::endl;
 }
 
-int main(int argc, char *argv[])
-{
-    StBernard *x = new StBernard("Sumo");
-    x->speak();
-    x->pet();
-    x->slobber();
-    delete x;
-
-    return 0;
-}
+//int main(int argc, char *argv[])
+//{
+//    StBernard *x = new StBernard("Sumo");
+//    x->speak();
+//    x->pet();
+//    x->slobber();
+//    delete x;
+//
+//    return 0;
+//}

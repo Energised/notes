@@ -33,19 +33,19 @@ void Crow::speak() const
 // 1) comment main from Animal.cpp
 // 2) g++ Animal.cpp Crow.cpp -o Crow
 
-int main(int argc, char* argv[])
-{
+//int main(int argc, char* argv[])
+//{
     //Crow x("Kevin"); // this works btw
-    Animal *x = new Crow("Kevin");
+//    Animal *x = new Crow("Kevin");
     // (Kevin) Constructor - Animal
     // (Kevin) Constructor - Crow
 
-    x->speak();
+//    x->speak();
     // (Kevin) Cacaw! says the Crow
 
-    delete x;
+//    delete x;
     // (Kevin) Destructor - Crow
     // (Kevin) Destructor - Animal
 
-    return 0;
-}
+//    return 0;
+//}
