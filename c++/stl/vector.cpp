@@ -28,5 +28,16 @@ int main(int argc, char *argv[])
 
     // vec auto-destructed once out of scope
 
+    std::cout << "vec = { ";
+
+    // iterator style for loop
+    // auto == std::vector<int>::iterator
+    for(auto it=vec.begin(); it!=vec.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
+
+    std::cout << "}" << std::endl;
+
     return 0;
 }
