@@ -58,6 +58,11 @@ int main(int argc, char* argv[])
     {
         func();
     }
+    catch(const my_coordinate_exception &ex)
+    {
+        std::cerr << "caught in main() : ";
+        std::cerr << ex.what() << std::endl;
+    }
     catch(const std::exception &ex)
     {
         std::cerr << "caught in main() : ";
